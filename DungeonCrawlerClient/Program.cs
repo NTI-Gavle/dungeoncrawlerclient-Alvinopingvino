@@ -35,16 +35,15 @@ namespace DungeonCrawlerClient
                 {
                     byte[] writeBytes = Encoding.UTF8.GetBytes(command);
                     tcpClient.GetStream().Write(writeBytes, 0, writeBytes.Length);
-                }   
+                }
                 else
                 {
                     byte[] writeBytes = Encoding.UTF8.GetBytes("stupidcommand");
                     tcpClient.GetStream().Write(writeBytes, 0, writeBytes.Length);
                 }
             }
-
-            tcpClient.Close();
-
+            
+            Environment.Exit(0);
         }
     }
 }
