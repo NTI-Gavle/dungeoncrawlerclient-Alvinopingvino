@@ -26,11 +26,21 @@ namespace DungeonCrawlerClient
                 byte[] bytes = new byte[1024];
                 tcpClient.GetStream().Read(bytes, 0, bytes.Length);
                 string message = Encoding.UTF8.GetString(bytes);
+
                 Console.Write(message);
 
+
                 string command = Console.ReadLine();
-                byte[] writeBytes = Encoding.UTF8.GetBytes(command);
-                tcpClient.GetStream().Write(writeBytes, 0, writeBytes.Length);
+                if (command.Length > 0)
+                {
+                    byte[] writeBytes = Encoding.UTF8.GetBytes(command);
+                    tcpClient.GetStream().Write(writeBytes, 0, writeBytes.Length);
+                }   
+                else
+                {
+                    byte[] writeBytes = Encoding.UTF8.GetBytes("stupidcommand");
+                    tcpClient.GetStream().Write(writeBytes, 0, writeBytes.Length);
+                }
             }
 
             tcpClient.Close();
